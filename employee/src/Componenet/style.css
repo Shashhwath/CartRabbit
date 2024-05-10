@@ -1,0 +1,17 @@
+body
+{
+    background-image: none;
+}
+.employee
+{
+  height: 50px;
+  width:50px;
+  border-radius: 25px;
+}
+
+.profile
+{
+  height:150px;
+  width:150px;
+  border-radius: 75px;
+}
