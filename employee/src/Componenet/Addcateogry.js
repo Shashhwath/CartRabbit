@@ -27,7 +27,7 @@ const Addcateogry = () => {
 
     //form for adding category
     
-    <div className='d-flex justify-content-center align-items-center vh-100 mt-5 loginPage'>
+    <div className='d-flex justify-content-center align-items-center vh-100  loginPage '>
     <div className='border rounded p-3 w-25 loginForm'>
       <form onSubmit={Handle}>
         <h2 className='text-dark'>Add Department</h2>

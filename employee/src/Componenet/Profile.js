@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import './style.css'
 const Profile = () => {
     const [admins,setAdmins] = useState([])
     useEffect(
@@ -18,9 +19,9 @@ const Profile = () => {
         }
     ,[])
   return (
-    <div className='vh-100 mt-5'>
+   
       <div >
-      <h2 className='d-flex justify-content-center mt-3 '>Admin Details</h2>
+      <h2 className='d-flex justify-content-center mt-5 '>Admin Details</h2>
      
         <table className='table mt-5 border'>
           <thead>
@@ -39,7 +40,7 @@ const Profile = () => {
           </tbody>
         </table>
       </div>
-    </div>
+    
   )
 }
 

@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, Outlet, useNavigate } from 'react-router-dom'
 import "bootstrap-icons/font/bootstrap-icons.css";
 import axios from 'axios';
-import '../index.css';
+
 
 const Dashboard = () => {
     axios.defaults.withCredentials = true
@@ -21,9 +21,9 @@ const Dashboard = () => {
         ).catch(err => console.log(err))
     }
     return (
-        <div classname="vh-100 mt-5 bg-light ">
+        <div >
             <div className='position-fixed w-100 col p-0 m-0 bg-light dashboard'>
-                <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
                     <h2 className="navbar-brand" >CartRabbit</h2>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>

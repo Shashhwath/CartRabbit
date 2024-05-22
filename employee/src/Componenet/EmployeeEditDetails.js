@@ -10,7 +10,8 @@ const EmployeeEditDetails = () => {
           email:"",
           address:"",
           cateogry:"",
-          phone:""
+          phone:"",
+          image:""
         }
       )
       const [cateogry, setCateogry] = useState([])
@@ -33,7 +34,8 @@ const EmployeeEditDetails = () => {
           address:result.data.Result[0].address,
           phone:result.data.Result[0].phone,
           department:result.data.Result[0].department,
-          cateogry:result.data.Result[0].cateogry
+          cateogry:result.data.Result[0].cateogry,
+        
           }
         )
       }
@@ -48,16 +50,26 @@ const EmployeeEditDetails = () => {
    const Handle = (e) =>
     {
        e.preventDefault()
-       axios.put('http://localhost:3005/emp/setemp/'+id,values).then(result => {
-          if(result.data.Status)
+       const fd =new FormData()
+       fd.append('name',values.name);
+       fd.append('email',values.email);
+       fd.append('address',values.address);
+       fd.append('phone',values.phone);
+       fd.append('department',values.department);
+       fd.append('cateogry',values.cateogry);
+       fd.append('image',values.image);
+      axios.put('http://localhost:3005/auth/setemp/'+id,fd).then(result => 
+        {
+         if(result.data.Status)
           {
             navigate('/employee_details/'+id)
           }
-          else{
+          else
+          {
             alert(result.data.Error)
           }
         }
-       ).catch(err => console.log(err))
+      ).catch(err => console.log(err))
     }
   return (
     
@@ -89,7 +101,7 @@ const EmployeeEditDetails = () => {
        </div>
        <div className='col-12'>
          <label htmlFor='department'>Department</label>
-         <input type='text' id='department' autoComplete='off' value={values.department} onChange={(e) => setValues({...values,department:e.target.value})}  placeholder='Enter the Phone Number' className='form-control rounded-0 '></input>
+         <input type='text' id='department' autoComplete='off' value={values.department} onChange={(e) => setValues({...values,department:e.target.value})}  placeholder='Enter the Department' className='form-control rounded-0 '></input>
        </div>
        <div className='col-12'>
          <label htmlFor='cateogry'>Category</label>
@@ -97,6 +109,10 @@ const EmployeeEditDetails = () => {
             {cateogry.map( c => {return <option key={c.id} value={c.id}>{c.name}</option> })}
          </select>
        </div>
+       <div className='col-12'>
+          <label htmlFor='image'>Image</label>
+          <input type='file' id='image' name='image' autoComplete='off' onChange={(e) => setValues({...values,image:e.target.files[0]})} placeholder='Upload the Image' className='form-control rounded-0 mb-3'></input>
+        </div>
        <button className='btn btn-success w-100 rounded-0 mb-2' type='submit'>Edit Employee </button>
      </form>
    </div>

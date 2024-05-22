@@ -15,10 +15,12 @@ import PrivateRoute from "./PrivateRoute";
 import EmployeeEditDetails from "./Componenet/EmployeeEditDetails";
 import Profile from "./Componenet/Profile";
 import './index.css'
+import Changepassword from "./Changepassword";
+import DeleteCateogry from "./Componenet/DeleteCateogry";
 
 function App() {
   return (
-    <div>
+    <div className="app">
      <BrowserRouter>
      <Routes>
       <Route path="/" element={<Begin/>}></Route>
@@ -26,7 +28,7 @@ function App() {
       <Route path="/employee_details/:id" element={<PrivateRoute><EmployeeDetail/></PrivateRoute>}></Route>
      <Route path='/adminlogin' element={<Login/>}></Route>
      <Route path='/editempdetails/:id' element={<EmployeeEditDetails/>}></Route>
-     
+     <Route path="/changepassword" element={<Changepassword/>}></Route>
       <Route path='/dashboard' element={
       <PrivateRoute>
       <Dashboard/>
@@ -39,6 +41,7 @@ function App() {
         <Route path="/dashboard/cateogry/addcateogry" element={<Addcateogry/>}></Route>
         <Route path="/dashboard/employee/addemployee" element={<Addemployee/>}></Route>
         <Route path="/dashboard/edit_emp/:id" element={<Editemployee/>}></Route>
+        <Route path="/dashboard/cateogry/delete" element={<DeleteCateogry/>}></Route>
       </Route>
       <Route path='/login' element={<Begin/>}></Route>
      </Routes>

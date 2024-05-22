@@ -15,3 +15,83 @@ body
   width:150px;
   border-radius: 75px;
 }
+
+.dashboard-container {
+  background-color: #f0f8ff; 
+  padding: 50px 0;
+}
+
+.card-custom {
+  transition: transform 0.2s, box-shadow 0.2s;
+  border-radius: 10px;
+}
+
+.card-custom:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+.card-header-custom {
+  background-color: #3b3449; 
+  color: white;
+  border-radius: 10px 10px 0 0;
+}
+
+.card-body-custom {
+  background: linear-gradient(145deg, #ffffff, #f3f3f3);
+  border-radius: 0 0 10px 10px;
+}
+
+/* EmployeeList.css */
+.container-custom {
+  background-color: #f0f8ff; /* Light blue background */
+  padding: 50px 20px;
+  border-radius: 10px;
+}
+
+.table-custom {
+  border: 1px solid #dee2e6;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.table-custom th,
+.table-custom td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.table-custom th {
+  background-color: #ff0077; 
+  color: white;
+}
+
+.table-custom img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.header-custom h2 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  color: #333;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.btn-custom {
+  margin: 5px;
+}
+
+.btn-custom-update {
+  background-color: #17a2b8;
+  color: white;
+}
+
+.btn-custom-delete {
+  background-color: #dc3545;
+  color: white;
+}
+

@@ -50,7 +50,7 @@ const Addemployee = () => {
    fd.append('phone',values.phone);
    fd.append('cateogry',values.cateogry);
    fd.append('image',values.image);
-   
+   console.log(fd)
    axios.post('http://localhost:3005/auth/emp',fd).then( result =>
     {
 

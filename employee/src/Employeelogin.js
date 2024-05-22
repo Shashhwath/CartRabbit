@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 const Employeelogin = () => {
   const [value, setValue] = useState(
@@ -23,7 +23,7 @@ const Employeelogin = () => {
       }
       else
       {
-      setError(result.data.Error)
+         setError(result.data.Error)
       }
     }
                                  
@@ -34,7 +34,7 @@ const Employeelogin = () => {
       <div className='border rounded p-3 w-25  bg-light text-dark  loginForm'>
         <form  onSubmit={Handle}>
         <div className='text-danger text-center'>
-            {error&&error}
+            {error && error}
           </div>
           <h2 className='text-center'>Employee Login</h2>
           <div className='mb-3 mt-3'>
@@ -51,9 +51,11 @@ const Employeelogin = () => {
           </div>
           <button className='btn btn-success w-100 rounded-0 mb-2' type='submit'>Login</button>
           <div>
+            <p className='mb-2'>Ensure given email and password are correct</p>
             <input type='checkbox' id='check' className='me-3'  required></input>
-            <label htmlFor='check'>Agree terms and conditions</label>
+            <label htmlFor='check'>Agree above conditions</label>
           </div>
+          <Link to={'/changepassword'} className='btn btn-primary d-flex justify-content-center rounded-0 mt-3'>Change Password</Link>
         </form>
       </div>
     </div>

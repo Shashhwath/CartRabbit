@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import './style.css'
 const Home = () => {
  
   const [totemp,setTotemp] = useState(0)
@@ -49,41 +50,55 @@ const Home = () => {
   
   },[])
   return (
-    <div className='vh-100 mt-5 bg-light'>
-      <h2 className='d-flex justify-content-center mt-3'>Dashboard</h2>
-      <div className='p-3 d-flex justify-content-center mt-3'>
-        <div className='px-3 pt-2 pb-3 border shadow-sm w-25'>
-          <div className='text-center pb-1'>
-            <h4>Employee</h4>
-          </div>
-          <hr/>
-          <div className='d-flex justify-content-around'>
-            <h5>Total:</h5>
-            <h5>{totemp}</h5>
-          </div>
-        </div>
-      </div>
-      <div className='p-3 d-flex justify-content-center mt-3'>
-        <div className='px-3 pt-2 pb-3 border shadow-sm w-25'>
-          <div className='text-center pb-1'>
-            <h4>Admin</h4>
-          </div>
-          <hr/>
-          <div className='d-flex justify-content-around'>
-            <h5>Total:</h5>
-            <h5>{totadmin}</h5>
+    <div className="dashboard-container">
+      <div className="container mt-5">
+        <h2 className="text-center">Dashboard</h2>
+
+        <div className="row justify-content-center mt-4">
+          <div className="col-md-4 p-3">
+            <div className="card border-0 shadow-lg card-custom">
+              <div className="card-header text-center card-header-custom">
+                <h4>Employee</h4>
+              </div>
+              <div className="card-body card-body-custom text-center">
+                <div className="d-flex justify-content-between">
+                  <h5>Total:</h5>
+                  <h5>{totemp}</h5>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div className='p-3 d-flex justify-content-center mt-3'>
-        <div className='px-3 pt-2 pb-3 border shadow-sm w-25'>
-          <div className='text-center pb-1'>
-            <h4>Salary</h4>
+
+        <div className="row justify-content-center mt-4">
+          <div className="col-md-4 p-3">
+            <div className="card border-0 shadow-lg card-custom">
+              <div className="card-header text-center card-header-custom">
+                <h4>Admin</h4>
+              </div>
+              <div className="card-body card-body-custom text-center">
+                <div className="d-flex justify-content-between">
+                  <h5>Total:</h5>
+                  <h5>{totadmin}</h5>
+                </div>
+              </div>
+            </div>
           </div>
-          <hr/>
-          <div className='d-flex justify-content-around'>
-            <h5>Total:</h5>
-            <h5>{totsalary}</h5>
+        </div>
+
+        <div className="row justify-content-center mt-4">
+          <div className="col-md-4 p-3">
+            <div className="card border-0 shadow-lg card-custom">
+              <div className="card-header text-center card-header-custom">
+                <h4>Salary</h4>
+              </div>
+              <div className="card-body card-body-custom text-center">
+                <div className="d-flex justify-content-between">
+                  <h5>Total:</h5>
+                  <h5>{totsalary}</h5>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

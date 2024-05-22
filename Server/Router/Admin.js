@@ -80,26 +80,6 @@ router.delete('/deletemp:id',(req,res) =>
     return res.json({Status:true,Result:result})
   } )
 })
-router.put('/setemp/:id',(req,res) =>
-{
-  const id = req.params.id;
-
-  const sql =`UPDATE emp set name = ? , email = ? ,salary = ?, address = ? , phone = ? ,department = ?,cateogry = ? Where id = ? `;
-  const values = [
-    req.body.name,
-    req.body.email,
-    req.body.salary,
-    req.body.address, 
-    req.body.phone,
-    req.body.department,
-    req.body.cateogry
-]
-  con.query(sql,[...values, id],(err,result) =>
-  {
-    if (err) return res.json({ Status: false, Error: err })
-      return res.json({ Status: true , Result:result})
-  })
-})
 
 const storage = multer.diskStorage( {
   destination: (req,file,cb) => {
@@ -113,10 +93,51 @@ const storage = multer.diskStorage( {
 )
 
 const upload = multer(
-   {
-    storage:storage
-   }
+  {
+   storage:storage
+  }
 )
+
+router.put('/setemp/:id',upload.single('image'),(req,res) =>
+{
+  const id = req.params.id;
+  if(req.file === undefined)
+    {
+      const sql =`UPDATE emp set name = ? , email = ? , address = ? , phone = ? ,department = ?,cateogry = ? Where id = ? `;
+    const values = [
+      req.body.name,
+      req.body.email,
+      req.body.address, 
+      req.body.phone,
+      req.body.department,
+      req.body.cateogry,
+  ]
+    con.query(sql,[...values, id],(err,result) =>
+    {
+      if (err) return res.json({ Status: false, Error: err })
+        return res.json({ Status: true , Result:result})
+    })
+    }
+    else{
+    const sql =`UPDATE emp set name = ? , email = ?, address = ? , phone = ? ,department = ?,cateogry = ?,image= ? Where id = ? `;
+    const values = [
+      req.body.name,
+      req.body.email,
+      req.body.address, 
+      req.body.phone,
+      req.body.department,
+      req.body.cateogry,
+      req.file.filename
+  ]
+    con.query(sql,[...values, id],(err,result) =>
+    {
+      if (err) return res.json({ Status: false, Error: err })
+        return res.json({ Status: true , Result:result})
+    })
+  }
+      
+})
+
 router.post('/emp',upload.single('image'), (req, res) => {
   const sql = `INSERT INTO emp(name,email,password,salary,address,phone,department,cateogry,image) VALUES(?)`;
   bcrypt.hash(req.body.password, 10, (err, hash) => {
@@ -132,7 +153,6 @@ router.post('/emp',upload.single('image'), (req, res) => {
           req.body.cateogry, 
           req.file.filename
       ]
-      console.log(values)
       con.query(sql, [values], (err, result) => {
           if (err) return res.json({ Status: false, Error: err });
           return res.json({ Status: true });
@@ -195,6 +215,18 @@ router.get('/logout',(req,res) =>
     res.clearCookie('token')
     return res.json({Status:true})
   })
+
+
+router.delete('/delcat/:value',(req,res) => 
+{
+  const value = req.params.value
+  const sql ="DELETE from cateogry where name = ? "
+  con.query(sql,[value],(err,result) =>
+  {
+    if(err) return res.json({Status:false,Error: err})
+    return res.json({Status:true,Result:result})
+  })
+})
 
 
 export { router as adminRouter } 

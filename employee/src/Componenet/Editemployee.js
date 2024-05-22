@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import './style.css'
 const Editemployee = () => {
 
     const {id} = useParams()
@@ -12,7 +13,8 @@ const Editemployee = () => {
           salary:"",
           address:"",
           cateogry:"",
-          phone:""
+          phone:"",
+          image:""
         }
       )
       const [cateogry, setCateogry] = useState([])
@@ -49,19 +51,30 @@ const Editemployee = () => {
 
   }, [])
 
-   const Handle = (e) =>
+  const Handle = (e) =>
     {
        e.preventDefault()
-       axios.put('http://localhost:3005/auth/setemp/'+id,values).then(result => {
-          if(result.data.Status)
+       const fd =new FormData()
+       fd.append('name',values.name);
+       fd.append('email',values.email);
+       fd.append('salary',values.salary);
+       fd.append('address',values.address);
+       fd.append('phone',values.phone);
+       fd.append('department',values.department);
+       fd.append('cateogry',values.cateogry);
+       fd.append('image',values.image);
+      axios.put('http://localhost:3005/emp/setemp/'+id,fd).then(result => 
+        {
+         if(result.data.Status)
           {
             navigate('/dashboard/employee')
           }
-          else{
+          else
+          {
             alert(result.data.Error)
           }
         }
-       ).catch(err => console.log(err))
+      ).catch(err => console.log(err))
     }
 
   return (
@@ -99,6 +112,10 @@ const Editemployee = () => {
           <select className='form-select mb-3' id='cateogry' value={values.cateogry} onChange={(e) => setValues({...values,cateogry:e.target.value})}>
              {cateogry.map( c => {return <option key={c.id} value={c.id}>{c.name}</option> })}
           </select>
+        </div>
+        <div className='col-12'>
+          <label htmlFor='image'>Image</label>
+          <input type='file' id='image' name='image' autoComplete='off' onChange={(e) => setValues({...values,image:e.target.files[0]})} placeholder='Upload the Image' className='form-control rounded-0 mb-3'></input>
         </div>
         <button className='btn btn-success w-100 rounded-0 mb-2' type='submit'>Edit Employee </button>
       </form>
